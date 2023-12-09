@@ -1,0 +1,8 @@
+cache/*
+!cache/prompt_test_df.pkl
+data/*.pkl
+*__pycache__*
+infra/vk_parser/logs
+infra/vk_parser/bot.py
+.vscode
+consts.py
