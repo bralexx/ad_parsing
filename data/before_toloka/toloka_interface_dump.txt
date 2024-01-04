@@ -1,0 +1,133 @@
+{
+  "view": {
+    "type": "view.list",
+    "items": [
+      {
+        "type": "view.group",
+        "label": "Полное объявление",
+        "content": {
+          "type": "view.text",
+          "content": {
+            "type": "data.input",
+            "path": "text"
+          }
+        }
+      },
+      {
+        "type": "view.group",
+        "label": "Товар",
+        "content": {
+        "type": "view.labeled-list",
+        "minWidth": 240,
+        "items": [
+          {
+            "label": "Название:",
+            "content": {
+              "type": "view.text",
+              "content": {
+                "type": "data.input",
+                "path": "product_name"
+              }
+            }
+          },
+          {
+            "label": "Цена:",
+            "content": {
+              "type": "view.list",
+              "direction": "horizontal",
+              "items": [
+                {
+                  "type": "view.text",
+                  "content": {
+                    "type": "data.input",
+                    "path": "product_price"
+                  }
+                },
+                {
+                  "type": "view.text",
+                  "content": {
+                    "type": "data.input",
+                    "path": "product_currency"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "label": "Количество:",
+            "content": {
+              "type": "view.text",
+              "content": {
+                "type": "data.input",
+                "path": "product_count"
+              }
+            }
+          }
+        ]
+      }
+      },
+      {
+        "type": "field.button-radio-group",
+        "validation": {
+          "type": "condition.required"
+        },
+        "label": "Содержит ли объявление такой товар?",
+        "options": [
+          {
+            "label": "Содержит",
+            "value": "contains"
+          },
+          {
+            "label": "Не содержит",
+            "value": "not_contains"
+          },
+          {
+            "label": "Недостаточно информации",
+            "value": "need_info"
+          }
+        ],
+        "data": {
+          "type": "data.output",
+          "path": "result"
+        }
+      }
+    ]
+  },
+  "plugins": [
+    {
+      "type": "plugin.toloka",
+      "layout": {
+        "kind": "scroll",
+        "taskWidth": 500
+      }
+    },
+    {
+      "1": {
+        "type": "action.set",
+        "data": {
+          "type": "data.output",
+          "path": "result"
+        },
+        "payload": "contains"
+      },
+      "2": {
+        "type": "action.set",
+        "data": {
+          "type": "data.output",
+          "path": "result"
+        },
+        "payload": "not_contains"
+      },
+      "3": {
+        "type": "action.set",
+        "data": {
+          "type": "data.output",
+          "path": "result"
+        },
+        "payload": "need_info"
+      },
+      "type": "plugin.hotkeys"
+    }
+  ],
+  "vars": {}
+}
